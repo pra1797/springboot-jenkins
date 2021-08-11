@@ -42,6 +42,7 @@ public class Personcontroller {
 		return personserve.findByAdharIDTwo();
 	}*/
 
+	//Get all data
 	@GetMapping(value = "/all") //http://localhost:8080/person/
 	@ApiOperation(value = "Find all Data in Details" , notes = "Show you all data", response = Contact.class)
 	public List<Person> getAllData(){
@@ -53,7 +54,7 @@ public class Personcontroller {
 		return personserve.getPerson(name);
 	}*/
 	
-	  //get all data
+	  //Get data by id
 	@GetMapping("/{adhar_id}")
 	   public ResponseEntity<Person> getPersonById(@PathVariable(value = "adhar_id") int adhar_id)
 	        throws Exception {
@@ -63,7 +64,7 @@ public class Personcontroller {
 	    }
 	
 	  
-	 //inssert eron data
+	 //Inssert eron data
 	@PostMapping(value = "/post")
 	public void addDetails(@RequestBody Person person) {
 		 personserve.addDetails(person); //response in boolean
@@ -77,6 +78,8 @@ public class Personcontroller {
 		
 		System.out.println("Data edited");
 	}*/
+	
+	//Update details
 	@PutMapping(value = "/put/{adhar_id}")
     public ResponseEntity<Person> updatePerson(@PathVariable int adhar_id, @RequestBody Person person) {
         Person currentPerson = personRepo.findById(adhar_id).orElseThrow(RuntimeException::new);
@@ -87,7 +90,7 @@ public class Personcontroller {
         return ResponseEntity.ok(currentPerson);
     }
 	
-	
+	//Delete a pertucular details
 	@DeleteMapping(value = "/del/{adhar_id}")
 	public void deleteDetails(@PathVariable Integer adhar_id) {
 		personserve.deleteDetails(adhar_id);
