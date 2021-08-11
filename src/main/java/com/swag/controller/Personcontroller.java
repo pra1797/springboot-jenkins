@@ -53,7 +53,8 @@ public class Personcontroller {
 		return personserve.getPerson(name);
 	}*/
 	
-	  @GetMapping("/{adhar_id}")
+	  //get all data
+	@GetMapping("/{adhar_id}")
 	   public ResponseEntity<Person> getPersonById(@PathVariable(value = "adhar_id") int adhar_id)
 	        throws Exception {
 	        Person person = personRepo.findById(adhar_id)
@@ -61,6 +62,8 @@ public class Personcontroller {
 	        return ResponseEntity.ok().body(person);
 	    }
 	
+	  
+	 //inssert eron data
 	@PostMapping(value = "/post")
 	public void addDetails(@RequestBody Person person) {
 		 personserve.addDetails(person); //response in boolean
